@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 import { Controls } from '../controls/Controls'
 import { CartItemInterface } from '../../contexts/CartContext'
@@ -20,22 +20,32 @@ export const Form = () => {
 	const { cart, setCart } = useContext(CartContext)
 	const [errors, setErrors] = useState<ErrorInterface | undefined>()
 
+	useEffect(() => {
+		if (!errors?.gear && !errors?.model && !errors?.price && errors) {
+			setCart((prevCart: CartItemInterface[]) => {
+				return [
+					...prevCart,
+					{
+						gear: gearRef.current?.value,
+						model: modelRef.current?.value,
+						price: priceRef.current?.value,
+						category: categoryRef.current?.value,
+					},
+				]
+			})
+			clearInputs()
+		}
+	}, [setCart, errors])
+
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		setErrors(validate(gearRef.current, modelRef.current, priceRef.current))
+	}
 
-		setCart((prevCart: CartItemInterface[]) => {
-			return [
-				...prevCart,
-				{
-					gear: gearRef.current?.value,
-					model: modelRef.current?.value,
-					price: priceRef.current?.value,
-					category: categoryRef.current?.value,
-				},
-			]
-		})
-		console.log(errors?.gear)
+	const clearInputs = () => {
+		gearRef.current!.value = ''
+		modelRef.current!.value = ''
+		priceRef.current!.value = ''
 	}
 
 	return (
