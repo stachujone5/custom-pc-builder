@@ -1,8 +1,15 @@
-import { useContext, useRef } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 import { Controls } from '../controls/Controls'
 import { CartItemInterface } from '../../contexts/CartContext'
 import classes from './Form.module.scss'
+import { validate } from '../../helpers/validate'
+
+interface ErrorInterface {
+	gear: boolean
+	model: boolean
+	price: boolean
+}
 
 export const Form = () => {
 	const gearRef = useRef<HTMLInputElement>(null)
@@ -11,9 +18,11 @@ export const Form = () => {
 	const categoryRef = useRef<HTMLSelectElement>(null)
 
 	const { cart, setCart } = useContext(CartContext)
+	const [errors, setErrors] = useState<ErrorInterface | undefined>()
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
+		setErrors(validate(gearRef.current, modelRef.current, priceRef.current))
 
 		setCart((prevCart: CartItemInterface[]) => {
 			return [
@@ -26,15 +35,14 @@ export const Form = () => {
 				},
 			]
 		})
-
-		console.log(cart)
+		console.log(errors?.gear)
 	}
 
 	return (
 		<form className={classes.form} onSubmit={handleSubmit}>
-			<Controls id='gear' label='Rodzaj sprzętu' type='text' reference={gearRef} />
-			<Controls id='model' label='Model' type='text' reference={modelRef} />
-			<Controls id='price' label='Cena' type='number' reference={priceRef} />
+			<Controls id='gear' label='Rodzaj sprzętu' type='text' reference={gearRef} error={errors?.gear} />
+			<Controls id='model' label='Model' type='text' reference={modelRef} error={errors?.model} />
+			<Controls id='price' label='Cena' type='number' reference={priceRef} min={0} error={errors?.price} />
 			<div className={classes['form-column']}>
 				<label htmlFor='category' className={classes.label}>
 					Kategoria
