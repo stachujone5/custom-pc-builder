@@ -1,16 +1,36 @@
 import { LegacyRef } from 'react'
 import classes from './Controls.module.scss'
 
-interface ControlsProps {
-	id: string
-	type: string
-	label: string
-	min?: number
-	error: boolean | undefined
-	reference: LegacyRef<HTMLInputElement> | undefined
+interface OptionInterface {
+	value: string
+	text: string
 }
 
-export const Controls = ({ id, type, label, min = 0, error, reference }: ControlsProps) => {
+interface ControlsProps {
+	id: string
+	type?: string
+	label: string
+	min?: number
+	error?: boolean | undefined
+	inputRef?: LegacyRef<HTMLInputElement> | undefined
+	selectRef?: LegacyRef<HTMLSelectElement> | undefined
+	element?: string
+	options?: OptionInterface[]
+}
+
+export const Controls = ({ id, type, label, min = 0, error, inputRef, selectRef, element, options }: ControlsProps) => {
+	if (element === 'select') {
+		return (
+			<div className={classes.controls}>
+				<label htmlFor={id}>{label}</label>
+				<select className={classes.input} ref={selectRef}>
+					{options?.map((option: OptionInterface) => {
+						return <option value={option.value}>{option.text}</option>
+					})}
+				</select>
+			</div>
+		)
+	}
 	return (
 		<div className={classes.controls}>
 			<label htmlFor={id}>{label}</label>
@@ -18,7 +38,7 @@ export const Controls = ({ id, type, label, min = 0, error, reference }: Control
 				<input
 					type={type}
 					className={classes.input}
-					ref={reference}
+					ref={inputRef}
 					min={min}
 					style={{ border: `2px solid ${error ? 'red' : 'transparent'}` }}
 				/>
@@ -26,7 +46,7 @@ export const Controls = ({ id, type, label, min = 0, error, reference }: Control
 				<input
 					type={type}
 					className={classes.input}
-					ref={reference}
+					ref={inputRef}
 					style={{ border: `2px solid ${error ? 'red' : 'transparent'}` }}
 				/>
 			)}

@@ -1,18 +1,5 @@
 .form {
 	background-color: var(--clr-main);
-
-	.form-column {
-		margin: var(--spacer-3) 0;
-		display: flex;
-		flex-direction: column;
-	}
-
-	.select {
-		margin-top: var(--spacer-1);
-		border-radius: 0.5rem;
-		padding: var(--spacer-2);
-	}
-
 	.btn {
 		background-color: var(--clr-accent);
 		border-radius: 0.5rem;

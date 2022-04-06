@@ -6,7 +6,10 @@
 	background-color: var(--clr-main);
 	overflow: hidden;
 	.form-body {
-		padding: var(--spacer-5) var(--spacer-8);
+		padding: var(--spacer-3) var(--spacer-5);
+
+		@media (min-width: 50rem) {
+			padding: var(--spacer-5) var(--spacer-8);
+		}
 	}
 }
-

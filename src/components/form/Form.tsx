@@ -2,14 +2,21 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 import { Controls } from '../controls/Controls'
 import { CartItemInterface } from '../../contexts/CartContext'
-import classes from './Form.module.scss'
 import { validate } from '../../helpers/validate'
+import classes from './Form.module.scss'
 
 interface ErrorInterface {
 	gear: boolean
 	model: boolean
 	price: boolean
 }
+
+const selectOptions = [
+	{ value: 'components', text: 'Podzespoły' },
+	{ value: 'hardware', text: 'Urządzenia peryferyjne' },
+	{ value: 'software', text: 'Oprogramowanie' },
+	{ value: 'other', text: 'inne' },
+]
 
 export const Form = () => {
 	const gearRef = useRef<HTMLInputElement>(null)
@@ -50,20 +57,10 @@ export const Form = () => {
 
 	return (
 		<form className={classes.form} onSubmit={handleSubmit}>
-			<Controls id='gear' label='Rodzaj sprzętu' type='text' reference={gearRef} error={errors?.gear} />
-			<Controls id='model' label='Model' type='text' reference={modelRef} error={errors?.model} />
-			<Controls id='price' label='Cena' type='number' reference={priceRef} min={0} error={errors?.price} />
-			<div className={classes['form-column']}>
-				<label htmlFor='category' className={classes.label}>
-					Kategoria
-				</label>
-				<select id='category' className={classes.select} ref={categoryRef}>
-					<option value='components'>Podzespoły</option>
-					<option value='hardware'>Urządzenia peryferyjne</option>
-					<option value='software'>Oprogramowanie</option>
-					<option value='other'>Inne</option>
-				</select>
-			</div>
+			<Controls id='gear' label='Rodzaj sprzętu' type='text' inputRef={gearRef} error={errors?.gear} />
+			<Controls id='model' label='Model' type='text' inputRef={modelRef} error={errors?.model} />
+			<Controls id='price' label='Cena' type='number' inputRef={priceRef} min={0} error={errors?.price} />
+			<Controls id='category' label='Kategoria' element='select' selectRef={categoryRef} options={selectOptions} />
 			<button type='submit' className={classes.btn}>
 				Dodaj
 			</button>
