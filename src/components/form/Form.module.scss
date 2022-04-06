@@ -19,6 +19,7 @@
 		margin-left: auto;
 		display: block;
 		padding: var(--spacer-3) var(--spacer-8);
+		transition: background-color 0.3s;
 
 		&:hover {
 			background-color: var(--clr-accent-hover);
