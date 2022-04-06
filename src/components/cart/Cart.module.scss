@@ -6,6 +6,12 @@
 
 	.icon {
 		font-size: var(--fz-6);
+		outline: none;
+		transition: color 0.3s;
+
+		&:focus {
+			color: rgb(218, 208, 208);
+		}
 	}
 
 	.count {

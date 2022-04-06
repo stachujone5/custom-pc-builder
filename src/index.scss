@@ -62,22 +62,12 @@ input {
 	font-size: inherit;
 	font-family: inherit;
 	border: none;
-	outline: none;
-	border: 2px solid transparent;
-	&:focus-visible {
-		border: 2px solid var(--clr-accent);
-	}
 }
 
 select {
 	font-size: inherit;
 	font-family: inherit;
 	border: none;
-	outline: none;
-	border: 2px solid transparent;
-	&:focus-visible {
-		border: 2px solid var(--clr-accent);
-	}
 }
 
 body {

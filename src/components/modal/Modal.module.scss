@@ -13,14 +13,41 @@
 	.modal {
 		position: relative;
 		background-color: var(--clr-accent);
-		padding: var(--spacer-5) var(--spacer-8);
+		padding: var(--spacer-5) var(--spacer-4);
 		width: calc(min(var(--max-width), 95vw));
+
+		.modal-top {
+			display: flex;
+			justify-content: space-between;
+			.title {
+				font-size: var(--fz-6);
+			}
+
+			.btn {
+				font-size: var(--fz-6);
+				transform: translateX(25%);
+			}
+		}
+
+		.modal-body {
+			margin-top: var(--spacer-5);
+			text-align: left;
+			font-size: 0.8rem;
+
+			.cell {
+				margin-bottom: var(--spacer-3);
+
+				.category {
+					margin-bottom: var(--spacer-1);
+				}
+			}
+		}
 	}
 
-	.btn {
-		position: absolute;
-		top: 0.5em;
-		right: 0.5em;
-		font-size: var(--fz-8);
+	@media (min-width: 60rem) {
+		.modal {
+			font-size: 1rem;
+			padding: var(--spacer-5) var(--spacer-4);
+		}
 	}
 }

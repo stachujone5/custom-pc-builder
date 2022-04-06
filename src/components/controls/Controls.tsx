@@ -25,7 +25,11 @@ export const Controls = ({ id, type, label, min = 0, error, inputRef, selectRef,
 				<label htmlFor={id}>{label}</label>
 				<select className={classes.input} ref={selectRef}>
 					{options?.map((option: OptionInterface) => {
-						return <option value={option.value}>{option.text}</option>
+						return (
+							<option key={option.value} value={option.value}>
+								{option.text}
+							</option>
+						)
 					})}
 				</select>
 			</div>
@@ -40,14 +44,14 @@ export const Controls = ({ id, type, label, min = 0, error, inputRef, selectRef,
 					className={classes.input}
 					ref={inputRef}
 					min={min}
-					style={{ border: `2px solid ${error ? 'red' : 'transparent'}` }}
+					style={{ border: `2px solid ${error ? 'red' : null}` }}
 				/>
 			) : (
 				<input
 					type={type}
 					className={classes.input}
 					ref={inputRef}
-					style={{ border: `2px solid ${error ? 'red' : 'transparent'}` }}
+					style={{ border: `2px solid ${error ? 'red' : null}` }}
 				/>
 			)}
 		</div>

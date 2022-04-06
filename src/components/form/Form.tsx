@@ -36,7 +36,7 @@ export const Form = () => {
 						gear: gearRef.current?.value,
 						model: modelRef.current?.value,
 						price: priceRef.current?.value,
-						category: categoryRef.current?.value,
+						category: categoryRef.current?.options[categoryRef.current.selectedIndex].textContent,
 					},
 				]
 			})
