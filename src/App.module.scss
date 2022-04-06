@@ -1,4 +1,10 @@
 .main {
+	width: calc(min(var(--max-width), 95vw));
+	margin-top: var(--spacer-8);
 	border-radius: var(--br);
+	background-color: var(--clr-main);
 	overflow: hidden;
+	.form-body {
+		padding: var(--spacer-5) var(--spacer-8);
+	}
 }

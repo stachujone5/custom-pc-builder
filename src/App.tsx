@@ -6,7 +6,9 @@ export const App = () => {
 	return (
 		<main className={classes.main}>
 			<Hero />
-			<Form />
+			<div className={classes['form-body']}>
+				<Form />
+			</div>
 		</main>
 	)
 }
