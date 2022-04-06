@@ -1,0 +1,26 @@
+.backdrop {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.8);
+	z-index: 200;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.modal {
+		position: relative;
+		background-color: var(--clr-accent);
+		padding: var(--spacer-5) var(--spacer-8);
+		width: calc(min(var(--max-width), 95vw));
+	}
+
+	.btn {
+		position: absolute;
+		top: 0.5em;
+		right: 0.5em;
+		font-size: var(--fz-8);
+	}
+}

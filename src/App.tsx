@@ -1,9 +1,20 @@
-import classes from './App.module.scss'
+import { useState } from 'react'
+import { Cart } from './components/cart/Cart'
 import { Form } from './components/form/Form'
 import { Hero } from './components/hero/Hero'
-import {AiOutlineShoppingCart} from '
+import { Modal } from './components/modal/Modal'
+import classes from './App.module.scss'
 
 export const App = () => {
+	const [isOpen, setIsOpen] = useState(false)
+
+	const openCart = () => {
+		setIsOpen(true)
+	}
+
+	const closeCart = () => {
+		setIsOpen(false)
+	}
 	return (
 		<>
 			<main className={classes.main}>
@@ -11,8 +22,9 @@ export const App = () => {
 				<div className={classes['form-body']}>
 					<Form />
 				</div>
+				<Cart onClick={openCart} />
 			</main>
-			<AiOutlineShoppingCart />
+			{isOpen && <Modal onClick={closeCart} />}
 		</>
 	)
 }

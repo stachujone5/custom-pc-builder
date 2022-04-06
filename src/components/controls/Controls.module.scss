@@ -1,0 +1,11 @@
+.controls {
+	margin: var(--spacer-3) 0;
+	display: flex;
+	flex-direction: column;
+
+	.input {
+		border-radius: 0.5rem;
+		padding: var(--spacer-2);
+		margin-top: var(--spacer-1);
+	}
+}

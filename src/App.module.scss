@@ -1,4 +1,5 @@
 .main {
+	position: relative;
 	width: calc(min(var(--max-width), 95vw));
 	margin-top: var(--spacer-8);
 	border-radius: var(--br);
@@ -8,3 +9,4 @@
 		padding: var(--spacer-5) var(--spacer-8);
 	}
 }
+

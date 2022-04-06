@@ -1,26 +1,17 @@
+import { Controls } from '../controls/Controls'
 import classes from './Form.module.scss'
 
 export const Form = () => {
+    
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault()
+	}
+
 	return (
-		<form className={classes.form}>
-			<div className={classes['form-column']}>
-				<label htmlFor='gear' className={classes.label}>
-					Rodzaj sprzętu
-				</label>
-				<input type='text' className={classes.input} id='gear' />
-			</div>
-			<div className={classes['form-column']}>
-				<label htmlFor='model' className={classes.label}>
-					Model
-				</label>
-				<input type='text' className={classes.input} id='model' />
-			</div>
-			<div className={classes['form-column']}>
-				<label htmlFor='price' className={classes.label}>
-					Cena
-				</label>
-				<input type='number' className={classes.input} id='price' />
-			</div>
+		<form className={classes.form} onClick={handleSubmit}>
+			<Controls id='gear' label='Rodzaj sprzętu' type='text' />
+			<Controls id='model' label='Model' type='text' />
+			<Controls id='price' label='Cena' type='number' />
 			<div className={classes['form-column']}>
 				<label htmlFor='category' className={classes.label}>
 					Kategoria
