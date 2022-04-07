@@ -8,6 +8,8 @@ export const ModalBody = () => {
 	const handleItemRemove = (id: string) => {
 		const newCart = cart.filter(item => item.id !== id)
 
+		localStorage.setItem('cart', JSON.stringify(newCart))
+
 		setCart(newCart)
 	}
 

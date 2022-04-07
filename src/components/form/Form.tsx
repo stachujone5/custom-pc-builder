@@ -30,25 +30,36 @@ export const Form = () => {
 
 	useEffect(() => {
 		if (!errors?.gear && !errors?.model && !errors?.price && errors) {
+			const cartItem = {
+				gear: gearRef.current?.value,
+				model: modelRef.current?.value,
+				price: priceRef.current?.value,
+				category: categoryRef.current?.options[categoryRef.current.selectedIndex].textContent,
+				id: uuidv4(),
+			}
+
 			setCart((prevCart: CartItemInterface[]) => {
-				return [
-					...prevCart,
-					{
-						gear: gearRef.current?.value,
-						model: modelRef.current?.value,
-						price: priceRef.current?.value,
-						category: categoryRef.current?.options[categoryRef.current.selectedIndex].textContent,
-						id: uuidv4(),
-					},
-				]
+				return [...prevCart, cartItem]
 			})
 			clearForm()
+			handleLocalStorage(cartItem)
 		}
 	}, [setCart, errors])
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		setErrors(validate(gearRef.current, modelRef.current, priceRef.current))
+	}
+
+	const handleLocalStorage = (cartItem: CartItemInterface) => {
+		if (localStorage.getItem('cart')) {
+			console.log(localStorage.getItem('cart'))
+			const newCart = JSON.parse(localStorage.getItem('cart')!)
+			newCart.push(cartItem)
+			localStorage.setItem('cart', JSON.stringify(newCart))
+			return
+		}
+		localStorage.setItem('cart', JSON.stringify([cartItem]))
 	}
 
 	const clearForm = () => {
