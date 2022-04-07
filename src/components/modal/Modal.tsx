@@ -11,6 +11,13 @@ interface ModalProps {
 export const Modal = ({ onClick }: ModalProps) => {
 	const { cart } = useContext(CartContext)
 
+	const fullPrice = cart.reduce((acc, curr) => {
+		if (curr.price) {
+			return acc + parseFloat(curr.price)
+		}
+		return acc
+	}, 0)
+
 	return (
 		<div className={classes.backdrop}>
 			<div className={classes.modal}>
@@ -18,7 +25,21 @@ export const Modal = ({ onClick }: ModalProps) => {
 				<button className={classes.btn} aria-label='Zamknij koszyk' onClick={onClick}>
 					<IoCloseSharp />
 				</button>
-				{cart.length ? <ModalBody /> : <p className={classes.info}>Nic tu nie ma...</p>}
+				{cart.length ? (
+					<>
+						<ModalBody />
+						<div className={classes.info}>
+							<p>
+								Ilość produktów: <span>{cart.length}</span>
+							</p>
+							<p>
+								Łącznie: <span>{fullPrice}zł</span>
+							</p>
+						</div>
+					</>
+				) : (
+					<p className={classes.error}>Nic tu nie ma...</p>
+				)}
 			</div>
 		</div>
 	)

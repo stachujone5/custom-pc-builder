@@ -21,7 +21,13 @@
 
 	.btn {
 		border-radius: var(--br);
-		background-color: var(--clr-accent-hover);
+		background-color: #4952fa;
 		padding: var(--spacer-3) var(--spacer-6);
+		transition: background-color 0.3s;
+
+		&:hover,
+		&:focus {
+			background-color: #373fd6;
+		}
 	}
 }

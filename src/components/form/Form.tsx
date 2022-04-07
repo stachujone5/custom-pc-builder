@@ -42,7 +42,7 @@ export const Form = () => {
 					},
 				]
 			})
-			clearInputs()
+			clearForm()
 		}
 	}, [setCart, errors])
 
@@ -51,7 +51,7 @@ export const Form = () => {
 		setErrors(validate(gearRef.current, modelRef.current, priceRef.current))
 	}
 
-	const clearInputs = () => {
+	const clearForm = () => {
 		gearRef.current!.value = ''
 		modelRef.current!.value = ''
 		priceRef.current!.value = ''

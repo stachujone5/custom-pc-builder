@@ -41,18 +41,13 @@ export const Controls = ({ id, type, label, min = 0, error, inputRef, selectRef,
 			{type === 'number' ? (
 				<input
 					type={type}
-					className={classes.input}
+					className={`${classes.input} ${error ? classes.error : null}`}
 					ref={inputRef}
 					min={min}
-					style={{ border: `2px solid ${error ? 'red' : null}` }}
+					step={0.1}
 				/>
 			) : (
-				<input
-					type={type}
-					className={classes.input}
-					ref={inputRef}
-					style={{ border: `2px solid ${error ? 'red' : null}` }}
-				/>
+				<input type={type} className={`${classes.input} ${error ? classes.error : null}`} ref={inputRef} />
 			)}
 		</div>
 	)

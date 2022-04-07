@@ -26,7 +26,7 @@ export const ModalBody = () => {
 						</div>
 						<div className={classes.cell}>
 							<h3 className={classes.title}>Cena:</h3>
-							<p>{item.price}</p>
+							<p>{item.price} zł</p>
 						</div>
 						<div className={classes.cell}>
 							<h3 className={classes.title}>Kategoria:</h3>
