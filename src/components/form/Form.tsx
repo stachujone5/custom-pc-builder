@@ -30,6 +30,7 @@ export const Form = () => {
 				category: categoryRef.current?.options[categoryRef.current.selectedIndex].textContent,
 				id: uuidv4(),
 				value: categoryRef.current?.options[categoryRef.current.selectedIndex].value,
+				isEditing: false,
 			}
 
 			setCart((prevCart: CartItemInterface[]) => {

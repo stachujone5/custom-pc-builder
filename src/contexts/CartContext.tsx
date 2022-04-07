@@ -29,6 +29,7 @@ export interface CartItemInterface {
 	category: string | null | undefined
 	id: string
 	value: string | undefined
+	isEditing: boolean
 }
 
 interface CategoryInterface {

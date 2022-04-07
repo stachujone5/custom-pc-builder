@@ -17,12 +17,26 @@
 		.title {
 			margin-bottom: var(--spacer-1);
 		}
+
+		.input {
+			background-color: var(--clr-accent-hover);
+			border-radius: var(--br);
+			padding: var(--spacer-2);
+			outline: none;
+			transition: background-color 0.3s;
+			&:hover,
+			&:focus {
+				background-color: #4952fa;
+			}
+		}
 	}
 
 	.btn {
+		display: inline-block;
+		padding: var(--spacer-3) var(--spacer-6);
+		margin-right: var(--spacer-2);
 		border-radius: var(--br);
 		background-color: #4952fa;
-		padding: var(--spacer-3) var(--spacer-6);
 		transition: background-color 0.3s;
 		outline: none;
 
@@ -46,5 +60,11 @@
 	.td {
 		border-bottom: 2px dotted rgba(0, 0, 0, 0.4);
 		padding: var(--spacer-2) 0;
+	}
+
+	.table-btn {
+		font-size: var(--fz-4);
+		border-bottom: 2px dotted rgba(0, 0, 0, 0.4);
+		color: rgb(133, 39, 39);
 	}
 }
