@@ -40,7 +40,7 @@ const basicCategories = [
 	{ value: 'components', text: 'Podzespoły' },
 	{ value: 'hardware', text: 'Urządzenia peryferyjne' },
 	{ value: 'software', text: 'Oprogramowanie' },
-	{ value: 'other', text: 'inne' },
+	{ value: 'other', text: 'Inne' },
 ]
 
 export const CartProvider = ({ children }: CartProviderInterface) => {

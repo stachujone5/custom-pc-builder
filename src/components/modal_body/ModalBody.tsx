@@ -2,7 +2,11 @@ import { useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 import classes from './ModalBody.module.scss'
 
-export const ModalBody = () => {
+interface ModalBodyProps {
+	view: string
+}
+
+export const ModalBody = ({ view }: ModalBodyProps) => {
 	const { cart, setCart, temporary, setTemporary } = useContext(CartContext)
 
 	const handleItemRemove = (id: string) => {
@@ -12,6 +16,33 @@ export const ModalBody = () => {
 
 		setCart(newCart)
 		setTemporary(newCart)
+	}
+
+	if (view === 'table') {
+		return (
+			<table className={classes.table}>
+				<thead>
+					<tr>
+						<th className={classes.column}>Rodzaj sprzętu:</th>
+						<th className={classes.column}>Model:</th>
+						<th className={classes.column}>Cena:</th>
+						<th className={classes.column}>Kategoria:</th>
+					</tr>
+				</thead>
+				<tbody>
+					{temporary.map(item => {
+						return (
+							<tr>
+								<td className={classes.td}>{item.gear}</td>
+								<td className={classes.td}>{item.model}</td>
+								<td className={classes.td}>{item.price} zł</td>
+								<td className={classes.td}>{item.category}</td>
+							</tr>
+						)
+					})}
+				</tbody>
+			</table>
+		)
 	}
 
 	return (

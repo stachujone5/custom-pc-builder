@@ -1,9 +1,13 @@
-.filter {
-	.col {
-		margin: var(--spacer-3) 0;
-	}
-
-	.input {
-		margin-right: var(--spacer-1);
+.input {
+	margin-left: var(--spacer-1);
+}
+.input {
+	border-radius: 0.5rem;
+	padding: var(--spacer-2);
+	margin-top: var(--spacer-1);
+	border: 2px solid transparent;
+	outline: none;
+	&:focus {
+		border: 2px solid var(--clr-accent-hover);
 	}
 }

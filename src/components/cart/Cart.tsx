@@ -4,15 +4,15 @@ import { CartContext } from '../../contexts/CartContext'
 import classes from './Cart.module.scss'
 
 interface CartProps {
-	onClick: () => void
+	openCart: () => void
 }
 
-export const Cart = ({ onClick }: CartProps) => {
+export const Cart = ({ openCart }: CartProps) => {
 	const { cart } = useContext(CartContext)
 
 	return (
 		<div className={classes.cart}>
-			<button className={classes.icon} onClick={onClick} aria-label='Otwórz koszyk'>
+			<button className={classes.icon} onClick={openCart} aria-label='Otwórz koszyk'>
 				<AiOutlineShoppingCart />
 			</button>
 			{cart.length ? <p className={classes.count}>{cart.length}</p> : null}

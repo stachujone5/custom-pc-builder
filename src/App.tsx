@@ -8,10 +8,11 @@ import { CartContext } from './contexts/CartContext'
 
 export const App = () => {
 	const [isOpen, setIsOpen] = useState(false)
-	const { setCart } = useContext(CartContext)
+	const { cart, setCart, setTemporary } = useContext(CartContext)
 
 	const openCart = () => {
 		setIsOpen(true)
+		setTemporary(cart)
 	}
 
 	const closeCart = () => {
@@ -21,8 +22,9 @@ export const App = () => {
 	useEffect(() => {
 		if (localStorage.getItem('cart')) {
 			setCart(JSON.parse(localStorage.getItem('cart')!))
+			setTemporary(JSON.parse(localStorage.getItem('cart')!))
 		}
-	}, [setCart])
+	}, [setCart, setTemporary])
 	return (
 		<>
 			<main className={classes.main}>
@@ -30,9 +32,9 @@ export const App = () => {
 				<div className={classes['form-body']}>
 					<Form />
 				</div>
-				<Cart onClick={openCart} />
+				<Cart openCart={openCart} />
 			</main>
-			{isOpen && <Modal onClick={closeCart} />}
+			{isOpen && <Modal closeCart={closeCart} />}
 		</>
 	)
 }

@@ -17,16 +17,24 @@
 		width: calc(min(var(--max-width), 95vw));
 		border-radius: var(--br);
 
-		.title {
-			font-size: var(--fz-6);
-		}
+		.modal-header {
+			display: flex;
+			justify-content: space-between;
 
-		.btn {
-			font-size: var(--fz-6);
-			transform: translateX(25%);
-			position: absolute;
-			top: 1.25em;
-			right: 1.25em;
+			.title {
+				font-size: var(--fz-6);
+				margin-bottom: var(--spacer-2);
+			}
+			.btn {
+				font-size: var(--fz-6);
+				outline: none;
+				transition: color 0.3s;
+
+				&:focus,
+				&:hover {
+					color: rgb(228, 228, 228);
+				}
+			}
 		}
 
 		.error {
@@ -38,11 +46,24 @@
 		.info {
 			margin-top: var(--spacer-4);
 			display: flex;
+			align-items: center;
 			gap: var(--spacer-4);
 
 			span {
 				color: #01065e;
 				font-weight: bold;
+			}
+			.clear {
+				border-radius: var(--br);
+				background-color: #4952fa;
+				padding: var(--spacer-3) var(--spacer-6);
+				transition: background-color 0.3s;
+				outline: none;
+
+				&:hover,
+				&:focus {
+					background-color: #373fd6;
+				}
 			}
 		}
 	}

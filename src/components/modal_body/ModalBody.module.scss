@@ -24,10 +24,27 @@
 		background-color: #4952fa;
 		padding: var(--spacer-3) var(--spacer-6);
 		transition: background-color 0.3s;
+		outline: none;
 
 		&:hover,
 		&:focus {
 			background-color: #373fd6;
 		}
+	}
+}
+
+.table {
+	border-top: var(--spacer-4) solid transparent;
+	text-align: left;
+	width: 100%;
+
+	.column {
+		border-right: var(--spacer-3) solid transparent;
+		border-bottom: var(--spacer-3) solid transparent;
+	}
+
+	.td {
+		border-bottom: 2px dotted rgba(0, 0, 0, 0.4);
+		padding: var(--spacer-2) 0;
 	}
 }

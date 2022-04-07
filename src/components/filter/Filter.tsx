@@ -13,21 +13,23 @@ export const Filter = () => {
 		const newCart = cart.filter(item => item.value === e.target.value)
 		setTemporary(newCart)
 	}
+
+	if (!cart.length) {
+		return null
+	}
 	return (
-		<div className={classes.filter}>
-			<div className={classes.col}>
-				<select id='filter' className={classes.input} onChange={handleChange}>
-					<option value='all'>Wszystko</option>
-					{categories.map(category => {
-						return (
-							<option key={category.value} value={category.value}>
-								{category.text}
-							</option>
-						)
-					})}
-				</select>
-				<label htmlFor='filter'>Filtruj</label>
-			</div>
+		<div>
+			<label htmlFor='filter'>Filtruj</label>
+			<select id='filter' className={classes.input} onChange={handleChange}>
+				<option value='all'>Wszystko</option>
+				{categories.map(category => {
+					return (
+						<option key={category.value} value={category.value}>
+							{category.text}
+						</option>
+					)
+				})}
+			</select>
 		</div>
 	)
 }
