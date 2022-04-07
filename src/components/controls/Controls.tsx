@@ -23,7 +23,7 @@ export const Controls = ({ id, type, label, min = 0, error, inputRef, selectRef,
 		return (
 			<div className={classes.controls}>
 				<label htmlFor={id}>{label}</label>
-				<select className={classes.input} ref={selectRef}>
+				<select className={classes.input} ref={selectRef} id={id}>
 					{options?.map((option: OptionInterface) => {
 						return (
 							<option key={option.value} value={option.value}>
@@ -45,9 +45,10 @@ export const Controls = ({ id, type, label, min = 0, error, inputRef, selectRef,
 					ref={inputRef}
 					min={min}
 					step={0.1}
+					id={id}
 				/>
 			) : (
-				<input type={type} className={`${classes.input} ${error ? classes.error : null}`} ref={inputRef} />
+				<input type={type} className={`${classes.input} ${error ? classes.error : null}`} ref={inputRef} id={id} />
 			)}
 		</div>
 	)

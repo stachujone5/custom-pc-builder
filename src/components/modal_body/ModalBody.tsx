@@ -3,7 +3,7 @@ import { CartContext } from '../../contexts/CartContext'
 import classes from './ModalBody.module.scss'
 
 export const ModalBody = () => {
-	const { cart, setCart } = useContext(CartContext)
+	const { cart, setCart, temporary, setTemporary } = useContext(CartContext)
 
 	const handleItemRemove = (id: string) => {
 		const newCart = cart.filter(item => item.id !== id)
@@ -11,13 +11,14 @@ export const ModalBody = () => {
 		localStorage.setItem('cart', JSON.stringify(newCart))
 
 		setCart(newCart)
+		setTemporary(newCart)
 	}
 
 	return (
 		<div className={classes['modal-body']}>
-			{cart.map(item => {
+			{temporary.map(item => {
 				return (
-					<div className={classes.item}>
+					<div className={classes.item} key={item.id}>
 						<div className={classes.cell}>
 							<h3 className={classes.title}>Rodzaj sprzętu:</h3>
 							<p>{item.gear}</p>

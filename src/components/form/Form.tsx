@@ -12,20 +12,13 @@ interface ErrorInterface {
 	price: boolean
 }
 
-const selectOptions = [
-	{ value: 'components', text: 'Podzespoły' },
-	{ value: 'hardware', text: 'Urządzenia peryferyjne' },
-	{ value: 'software', text: 'Oprogramowanie' },
-	{ value: 'other', text: 'inne' },
-]
-
 export const Form = () => {
 	const gearRef = useRef<HTMLInputElement>(null)
 	const modelRef = useRef<HTMLInputElement>(null)
 	const priceRef = useRef<HTMLInputElement>(null)
 	const categoryRef = useRef<HTMLSelectElement>(null)
 
-	const { setCart } = useContext(CartContext)
+	const { setCart, categories, setTemporary } = useContext(CartContext)
 	const [errors, setErrors] = useState<ErrorInterface | undefined>()
 
 	useEffect(() => {
@@ -36,15 +29,19 @@ export const Form = () => {
 				price: priceRef.current?.value,
 				category: categoryRef.current?.options[categoryRef.current.selectedIndex].textContent,
 				id: uuidv4(),
+				value: categoryRef.current?.options[categoryRef.current.selectedIndex].value,
 			}
 
 			setCart((prevCart: CartItemInterface[]) => {
 				return [...prevCart, cartItem]
 			})
+			setTemporary((prevCart: CartItemInterface[]) => {
+				return [...prevCart, cartItem]
+			})
 			clearForm()
 			handleLocalStorage(cartItem)
 		}
-	}, [setCart, errors])
+	}, [setCart, errors, setTemporary])
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -73,7 +70,7 @@ export const Form = () => {
 			<Controls id='gear' label='Rodzaj sprzętu' type='text' inputRef={gearRef} error={errors?.gear} />
 			<Controls id='model' label='Model' type='text' inputRef={modelRef} error={errors?.model} />
 			<Controls id='price' label='Cena' type='number' inputRef={priceRef} min={0} error={errors?.price} />
-			<Controls id='category' label='Kategoria' element='select' selectRef={categoryRef} options={selectOptions} />
+			<Controls id='category' label='Kategoria' element='select' selectRef={categoryRef} options={categories} />
 			<button type='submit' className={classes.btn}>
 				Dodaj
 			</button>
