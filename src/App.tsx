@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Cart } from './components/cart/Cart'
 import { Form } from './components/form/Form'
 import { Hero } from './components/hero/Hero'

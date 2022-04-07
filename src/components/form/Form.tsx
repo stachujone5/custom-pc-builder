@@ -3,6 +3,7 @@ import { CartContext } from '../../contexts/CartContext'
 import { Controls } from '../controls/Controls'
 import { CartItemInterface } from '../../contexts/CartContext'
 import { validate } from '../../helpers/validate'
+import { v4 as uuidv4 } from 'uuid'
 import classes from './Form.module.scss'
 
 interface ErrorInterface {
@@ -24,7 +25,7 @@ export const Form = () => {
 	const priceRef = useRef<HTMLInputElement>(null)
 	const categoryRef = useRef<HTMLSelectElement>(null)
 
-	const { cart, setCart } = useContext(CartContext)
+	const { setCart } = useContext(CartContext)
 	const [errors, setErrors] = useState<ErrorInterface | undefined>()
 
 	useEffect(() => {
@@ -37,6 +38,7 @@ export const Form = () => {
 						model: modelRef.current?.value,
 						price: priceRef.current?.value,
 						category: categoryRef.current?.options[categoryRef.current.selectedIndex].textContent,
+						id: uuidv4(),
 					},
 				]
 			})

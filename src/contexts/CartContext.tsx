@@ -16,6 +16,7 @@ export interface CartItemInterface {
 	model: string | undefined
 	price: string | undefined
 	category: string | null | undefined
+	id: string
 }
 
 export const CartProvider = ({ children }: CartProviderInterface) => {

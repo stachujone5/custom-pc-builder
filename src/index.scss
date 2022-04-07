@@ -78,3 +78,16 @@ body {
 	display: flex;
 	justify-content: center;
 }
+::-webkit-scrollbar {
+	width: 0.7rem;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--clr-accent-hover);
+	border-radius: var(--br);
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #343866;
+	border-radius: var(--br);
+}

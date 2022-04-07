@@ -3,7 +3,13 @@ import { CartContext } from '../../contexts/CartContext'
 import classes from './ModalBody.module.scss'
 
 export const ModalBody = () => {
-	const { cart } = useContext(CartContext)
+	const { cart, setCart } = useContext(CartContext)
+
+	const handleItemRemove = (id: string) => {
+		const newCart = cart.filter(item => item.id !== id)
+
+		setCart(newCart)
+	}
 
 	return (
 		<div className={classes['modal-body']}>
@@ -26,6 +32,9 @@ export const ModalBody = () => {
 							<h3 className={classes.title}>Kategoria:</h3>
 							<p>{item.category}</p>
 						</div>
+						<button className={classes.btn} onClick={() => handleItemRemove(item.id)}>
+							Usuń
+						</button>
 					</div>
 				)
 			})}

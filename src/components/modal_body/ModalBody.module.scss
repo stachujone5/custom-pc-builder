@@ -2,12 +2,13 @@
 	margin-top: var(--spacer-5);
 	text-align: left;
 	font-size: 0.8rem;
-	overflow-y: auto;
+	overflow: auto;
 	max-height: 35rem;
 	.item {
 		border-bottom: 2px dotted rgba(0, 0, 0, 0.4);
-		padding: var(--spacer-2);
+		padding: var(--spacer-2) 0;
 		margin-bottom: var(--spacer-4);
+		width: 90%;
 	}
 
 	.cell {
@@ -16,5 +17,11 @@
 		.title {
 			margin-bottom: var(--spacer-1);
 		}
+	}
+
+	.btn {
+		border-radius: var(--br);
+		background-color: var(--clr-accent-hover);
+		padding: var(--spacer-3) var(--spacer-6);
 	}
 }
