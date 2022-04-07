@@ -1,15 +1,16 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { IoClose } from 'react-icons/io5'
 import { CartContext, CartItemInterface } from '../../contexts/CartContext'
 import classes from './ModalBody.module.scss'
 
 interface ModalBodyProps {
 	view: string
+	setIsError: any
 }
 
-type PropertyType = 'gear' | 'model' | 'price'
+type PropertyType = 'gear' | 'model' | 'price' | 'value'
 
-export const ModalBody = ({ view }: ModalBodyProps) => {
+export const ModalBody = ({ view, setIsError }: ModalBodyProps) => {
 	const { cart, setCart, temporary, setTemporary, categories } = useContext(CartContext)
 
 	const handleItemRemove = (id: string) => {
@@ -24,24 +25,41 @@ export const ModalBody = ({ view }: ModalBodyProps) => {
 	const handleEdit = (id: string) => {
 		const editingItem = cart.find(item => item.id === id)
 		const newCart = cart.filter(item => item.id !== id)
+		setIsError(false)
+
+		if (parseFloat(editingItem?.price!) <= 0 || !editingItem?.gear || !editingItem?.model) {
+			setIsError(true)
+			return
+		}
 
 		if (editingItem) {
 			editingItem.isEditing = !editingItem.isEditing
 			newCart.push(editingItem)
 			setCart(newCart)
+			localStorage.setItem('cart', JSON.stringify(newCart))
 		}
-
-		localStorage.setItem('cart', JSON.stringify(newCart))
 	}
 
-	const handleGearChange = (e: React.ChangeEvent<HTMLInputElement>, item: CartItemInterface) => {
-		if (e.target.name === 'gear' || e.target.name === 'model' || e.target.name === 'price') {
-			const property: PropertyType = e.target.name
+	const handleChange = (
+		e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>,
+		item: CartItemInterface
+	) => {
+		const { target } = e as React.ChangeEvent<HTMLInputElement>
+		const { target: selectTarget } = e as React.ChangeEvent<HTMLSelectElement>
+		if (target.name === 'gear' || target.name === 'model' || target.name === 'price' || target.name === 'value') {
+			const property: PropertyType = target.name
 			const editingItem = cart.find(product => product.id === item.id)
 			const newCart = cart.filter(product => product.id !== item.id)
 			if (editingItem) {
-				editingItem[property] = e.target.value
-				newCart.push(editingItem)
+				if (e.target.name !== 'value') {
+					editingItem[property] = e.target.value
+					newCart.push(editingItem)
+				} else {
+					const value = categories.find(item => item.text === e.target.value)
+					editingItem['category'] = selectTarget.options[selectTarget.selectedIndex].value
+					editingItem[property] = value?.value
+					newCart.push(editingItem)
+				}
 			}
 			setCart(newCart)
 			setTemporary(newCart)
@@ -62,7 +80,7 @@ export const ModalBody = ({ view }: ModalBodyProps) => {
 				<tbody>
 					{temporary.map(item => {
 						return (
-							<tr>
+							<tr key={item.id}>
 								<td className={classes.td}>{item.gear}</td>
 								<td className={classes.td}>{item.model}</td>
 								<td className={classes.td}>{item.price} zł</td>
@@ -94,7 +112,7 @@ export const ModalBody = ({ view }: ModalBodyProps) => {
 									name='gear'
 									value={item.gear}
 									onChange={e => {
-										handleGearChange(e, item)
+										handleChange(e, item)
 									}}></input>
 							) : (
 								<p>{item.gear}</p>
@@ -109,7 +127,7 @@ export const ModalBody = ({ view }: ModalBodyProps) => {
 									name='model'
 									value={item.model}
 									onChange={e => {
-										handleGearChange(e, item)
+										handleChange(e, item)
 									}}></input>
 							) : (
 								<p>{item.model}</p>
@@ -120,11 +138,13 @@ export const ModalBody = ({ view }: ModalBodyProps) => {
 							{item.isEditing ? (
 								<input
 									className={classes.input}
-									type='text'
+									type='number'
 									name='price'
+									min={0}
+									step={0.1}
 									value={item.price}
 									onChange={e => {
-										handleGearChange(e, item)
+										handleChange(e, item)
 									}}></input>
 							) : (
 								<p>{item.price} zł</p>
@@ -133,7 +153,13 @@ export const ModalBody = ({ view }: ModalBodyProps) => {
 						<div className={classes.cell}>
 							<h3 className={classes.title}>Kategoria:</h3>
 							{item.isEditing ? (
-								<select className={classes.input}>
+								<select
+									className={classes.input}
+									name='value'
+									value={item.category!}
+									onChange={e => {
+										handleChange(e, item)
+									}}>
 									{categories.map(category => {
 										return <option key={category.value}>{category.text}</option>
 									})}

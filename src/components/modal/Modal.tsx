@@ -12,6 +12,8 @@ interface ModalProps {
 
 export const Modal = ({ closeCart }: ModalProps) => {
 	const [view, setView] = useState('column')
+	const [isError, setIsError] = useState(false)
+
 	const { temporary, setTemporary, setCart } = useContext(CartContext)
 
 	const handleTable = () => {
@@ -58,7 +60,7 @@ export const Modal = ({ closeCart }: ModalProps) => {
 				<Filter />
 				{temporary.length ? (
 					<>
-						<ModalBody view={view} />
+						<ModalBody setIsError={setIsError} view={view} />
 						<div className={classes.info}>
 							<p>
 								Ilość produktów: <span>{temporary.length}</span>
@@ -74,6 +76,7 @@ export const Modal = ({ closeCart }: ModalProps) => {
 				) : (
 					<p className={classes.error}>Nic tu nie ma...</p>
 				)}
+				{isError && <p className={classes.invalid}>Wprowadź poprawne wartości!</p>}
 			</div>
 		</div>
 	)

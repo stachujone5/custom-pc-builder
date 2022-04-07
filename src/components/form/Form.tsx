@@ -51,7 +51,6 @@ export const Form = () => {
 
 	const handleLocalStorage = (cartItem: CartItemInterface) => {
 		if (localStorage.getItem('cart')) {
-			console.log(localStorage.getItem('cart'))
 			const newCart = JSON.parse(localStorage.getItem('cart')!)
 			newCart.push(cartItem)
 			localStorage.setItem('cart', JSON.stringify(newCart))

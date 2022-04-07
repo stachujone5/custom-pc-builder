@@ -28,6 +28,9 @@
 			&:focus {
 				background-color: #4952fa;
 			}
+			&::-webkit-inner-spin-button {
+				-webkit-appearance: none;
+			}
 		}
 	}
 
