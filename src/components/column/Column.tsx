@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { CartContext, CartItemInterface } from '../../contexts/CartContext'
 import classes from './Column.module.scss'
 
@@ -12,7 +12,7 @@ type PropertyType = 'gear' | 'model' | 'price' | 'value'
 export const Column = ({ setIsError, handleItemRemove }: ColumnProps) => {
 	const { temporary, setTemporary, cart, setCart, categories } = useContext(CartContext)
 
-	const handleEdit = (id: string) => {
+	const handleEdit = (e: any, id: string) => {
 		const editingItem = cart.find(item => item.id === id)
 		const newCart = cart.filter(item => item.id !== id)
 		setIsError(false)
@@ -36,23 +36,20 @@ export const Column = ({ setIsError, handleItemRemove }: ColumnProps) => {
 	) => {
 		const { target } = e as React.ChangeEvent<HTMLInputElement>
 		const { target: selectTarget } = e as React.ChangeEvent<HTMLSelectElement>
+
+		const editedItem = cart.find(product => item.id === product.id)
+
 		if (target.name === 'gear' || target.name === 'model' || target.name === 'price' || target.name === 'value') {
 			const property: PropertyType = target.name
-			const editingItem = cart.find(product => product.id === item.id)
-			const newCart = cart.filter(product => product.id !== item.id)
-			if (editingItem) {
+			if (editedItem) {
 				if (e.target.name !== 'value') {
-					editingItem[property] = e.target.value
-					newCart.push(editingItem)
+					editedItem[property] = e.target.value
 				} else {
 					const value = categories.find(item => item.text === e.target.value)
-					editingItem['category'] = selectTarget.options[selectTarget.selectedIndex].value
-					editingItem[property] = value?.value
-					newCart.push(editingItem)
+					editedItem['category'] = selectTarget.options[selectTarget.selectedIndex].value
+					editedItem[property] = value?.value
 				}
 			}
-			setCart(newCart)
-			setTemporary(newCart)
 		}
 	}
 	return (
@@ -67,7 +64,7 @@ export const Column = ({ setIsError, handleItemRemove }: ColumnProps) => {
 									className={classes.input}
 									type='text'
 									name='gear'
-									value={item.gear}
+									placeholder={item.gear}
 									onChange={e => {
 										handleChange(e, item)
 									}}></input>
@@ -82,7 +79,7 @@ export const Column = ({ setIsError, handleItemRemove }: ColumnProps) => {
 									className={classes.input}
 									type='text'
 									name='model'
-									value={item.model}
+									placeholder={item.model}
 									onChange={e => {
 										handleChange(e, item)
 									}}></input>
@@ -97,9 +94,9 @@ export const Column = ({ setIsError, handleItemRemove }: ColumnProps) => {
 									className={classes.input}
 									type='number'
 									name='price'
+									placeholder={item.price}
 									min={0}
 									step={0.1}
-									value={item.price}
 									onChange={e => {
 										handleChange(e, item)
 									}}></input>
@@ -113,7 +110,7 @@ export const Column = ({ setIsError, handleItemRemove }: ColumnProps) => {
 								<select
 									className={classes.input}
 									name='value'
-									value={item.category!}
+									defaultValue={item.category!}
 									onChange={e => {
 										handleChange(e, item)
 									}}>
@@ -125,7 +122,7 @@ export const Column = ({ setIsError, handleItemRemove }: ColumnProps) => {
 								<p>{item.category}</p>
 							)}
 						</div>
-						<button className={classes.btn} onClick={() => handleEdit(item.id)}>
+						<button className={classes.btn} onClick={e => handleEdit(e, item.id)}>
 							{item.isEditing ? 'Zatwierdź' : 'Edytuj'}
 						</button>
 						<button className={classes.btn} onClick={() => handleItemRemove(item.id)}>
