@@ -9,15 +9,16 @@ interface ModalBodyProps {
 }
 
 export const ModalBody = ({ view, setIsError }: ModalBodyProps) => {
-	const { cart, setCart, setTemporary } = useContext(CartContext)
+	const { cart, setCart, setTemporary, temporary } = useContext(CartContext)
 
 	const handleItemRemove = (id: string) => {
 		const newCart = cart.filter(item => item.id !== id)
+		const newTempCart = temporary.filter(item => item.id !== id)
 
 		localStorage.setItem('cart', JSON.stringify(newCart))
 
 		setCart(newCart)
-		setTemporary(newCart)
+		setTemporary(newTempCart)
 	}
 
 	if (view === 'table') {
