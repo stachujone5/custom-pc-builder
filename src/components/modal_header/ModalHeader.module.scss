@@ -1,0 +1,27 @@
+.modal-header {
+	display: flex;
+	justify-content: space-between;
+
+	.title {
+		font-size: var(--fz-6);
+		margin-bottom: var(--spacer-2);
+	}
+	.btn {
+		font-size: var(--fz-6);
+		outline: none;
+		transition: color 0.3s;
+
+		&:focus,
+		&:hover {
+			color: rgb(228, 228, 228);
+		}
+	}
+
+	.view {
+		display: none;
+
+		@media (min-width: 50rem) {
+			display: inline;
+		}
+	}
+}

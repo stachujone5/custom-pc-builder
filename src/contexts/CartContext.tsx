@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useRef, useState } from 'react'
 
 interface CartContextInterface {
 	cart: CartItemInterface[]
@@ -7,6 +7,7 @@ interface CartContextInterface {
 	setCategories: React.Dispatch<React.SetStateAction<CategoryInterface[]>>
 	temporary: CartItemInterface[]
 	setTemporary: React.Dispatch<React.SetStateAction<CartItemInterface[]>>
+	selectedOption: React.MutableRefObject<string>
 }
 
 export const CartContext = createContext<CartContextInterface>({
@@ -16,6 +17,7 @@ export const CartContext = createContext<CartContextInterface>({
 	setCategories: () => [],
 	temporary: [],
 	setTemporary: () => [],
+	selectedOption: { current: '' },
 })
 
 interface CartProviderInterface {
@@ -48,9 +50,10 @@ export const CartProvider = ({ children }: CartProviderInterface) => {
 	const [cart, setCart] = useState<CartItemInterface[]>([])
 	const [temporary, setTemporary] = useState<CartItemInterface[]>([])
 	const [categories, setCategories] = useState<CategoryInterface[]>(basicCategories)
+	const selectedOption = useRef<string>('')
 
 	return (
-		<CartContext.Provider value={{ cart, setCart, categories, setCategories, temporary, setTemporary }}>
+		<CartContext.Provider value={{ cart, setCart, categories, setCategories, temporary, setTemporary, selectedOption }}>
 			{children}
 		</CartContext.Provider>
 	)

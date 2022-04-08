@@ -1,11 +1,17 @@
 import { useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext'
-import classes from './Filter.module.scss'
 
-export const Filter = () => {
-	const { categories, cart, setTemporary } = useContext(CartContext)
+interface FilterProps {
+	className: string
+	setCurrentOption: any
+}
+
+export const Filter = ({ className, setCurrentOption }: FilterProps) => {
+	const { categories, cart, setTemporary, selectedOption } = useContext(CartContext)
 
 	const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		selectedOption.current = 'Wybierz'
+		setCurrentOption('Wybierz')
 		if (e.target.value === 'all') {
 			setTemporary(cart)
 			return
@@ -20,7 +26,7 @@ export const Filter = () => {
 	return (
 		<div>
 			<label htmlFor='filter'>Filtruj</label>
-			<select id='filter' className={classes.input} onChange={handleChange}>
+			<select id='filter' className={className} onChange={handleChange}>
 				<option value='all'>Wszystko</option>
 				{categories.map(category => {
 					return (

@@ -8,7 +8,7 @@ import { CartContext } from './contexts/CartContext'
 
 export const App = () => {
 	const [isOpen, setIsOpen] = useState(false)
-	const { cart, setCart, setTemporary } = useContext(CartContext)
+	const { cart, setCart, setTemporary, selectedOption } = useContext(CartContext)
 
 	const openCart = () => {
 		setIsOpen(true)
@@ -17,14 +17,17 @@ export const App = () => {
 
 	const closeCart = () => {
 		setIsOpen(false)
+		selectedOption.current = 'Wybierz'
 	}
 
 	useEffect(() => {
+		selectedOption.current = 'Wybierz'
 		if (localStorage.getItem('cart')) {
 			setCart(JSON.parse(localStorage.getItem('cart')!))
 			setTemporary(JSON.parse(localStorage.getItem('cart')!))
 		}
-	}, [setCart, setTemporary])
+	}, [setCart, setTemporary, selectedOption])
+
 	return (
 		<>
 			<main className={classes.main}>

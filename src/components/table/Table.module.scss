@@ -1,0 +1,21 @@
+.table {
+	border-top: var(--spacer-4) solid transparent;
+	text-align: left;
+	width: 100%;
+
+	.column {
+		border-right: var(--spacer-3) solid transparent;
+		border-bottom: var(--spacer-3) solid transparent;
+	}
+
+	.td {
+		border-bottom: 2px dotted rgba(0, 0, 0, 0.4);
+		padding: var(--spacer-2) 0;
+	}
+
+	.table-btn {
+		font-size: var(--fz-4);
+		border-bottom: 2px dotted rgba(0, 0, 0, 0.4);
+		color: rgb(133, 39, 39);
+	}
+}
