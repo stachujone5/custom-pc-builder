@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react'
+import { useContext } from 'react'
 import { CartContext, CartItemInterface } from '../../contexts/CartContext'
 import classes from './Column.module.scss'
 
@@ -10,7 +10,7 @@ interface ColumnProps {
 type PropertyType = 'gear' | 'model' | 'price' | 'value'
 
 export const Column = ({ setIsError, handleItemRemove }: ColumnProps) => {
-	const { temporary, setTemporary, cart, setCart, categories } = useContext(CartContext)
+	const { temporary, cart, setCart, categories } = useContext(CartContext)
 
 	const handleEdit = (e: any, id: string) => {
 		const editingItem = cart.find(item => item.id === id)
