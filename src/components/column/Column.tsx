@@ -17,7 +17,7 @@ export const Column = ({ setIsError, handleItemRemove }: ColumnProps) => {
 		const newCart = cart.filter(item => item.id !== id)
 		setIsError(false)
 
-		if (parseFloat(editingItem?.price!) <= 0 || !editingItem?.gear || !editingItem?.model) {
+		if (parseFloat(editingItem?.price!) <= 0 || !editingItem?.price || !editingItem?.gear || !editingItem?.model) {
 			setIsError(true)
 			return
 		}
