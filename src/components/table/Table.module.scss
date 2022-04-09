@@ -4,10 +4,10 @@
 	width: 100%;
 	overflow: auto;
 	max-height: 35rem;
-	display: inline-block;
+	display: block;
 
 	.column {
-		border-right: var(--spacer-3) solid transparent;
+		border-right: var(--spacer-5) solid transparent;
 		border-bottom: var(--spacer-3) solid transparent;
 	}
 
