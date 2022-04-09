@@ -40,7 +40,7 @@ export const CategoryModal = ({ onClick }: CategoryModalProps) => {
 		<div className={classes.backdrop}>
 			<div className={classes.modal}>
 				<h2 className={classes.title}>Dodaj kategorię</h2>
-				<button onClick={onClick} className={classes.btn}>
+				<button onClick={onClick} className={classes.btn} aria-label="Zamknij modal">
 					<IoClose />
 				</button>
 				<div className={classes.container}>

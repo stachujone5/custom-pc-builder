@@ -45,7 +45,7 @@ export const Controls = ({
 						)
 					})}
 				</select>
-				<button className={classes.btn} type='button' onClick={onClick}>
+				<button className={classes.btn} type='button' onClick={onClick} aria-label='Otwórz modal z kategoriami'>
 					<HiPlus />
 				</button>
 			</div>
