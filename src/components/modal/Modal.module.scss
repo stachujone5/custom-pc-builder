@@ -16,6 +16,7 @@
 		padding: var(--spacer-5) var(--spacer-4);
 		width: calc(min(var(--max-width), 95vw));
 		border-radius: var(--br);
+		overflow-x: auto;
 
 		.error {
 			margin-top: var(--spacer-5);
