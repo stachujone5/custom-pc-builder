@@ -17,8 +17,6 @@
 		width: calc(min(var(--max-width), 95vw));
 		border-radius: var(--br);
 		overflow: auto;
-		max-height: 100vh;
-
 		.error {
 			margin-top: var(--spacer-5);
 			text-align: center;

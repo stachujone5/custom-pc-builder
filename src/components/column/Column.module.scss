@@ -3,7 +3,7 @@
 	text-align: left;
 	font-size: 0.8rem;
 	overflow: auto;
-	max-height: 35rem;
+	max-height: 20rem;
 	.item {
 		border-bottom: 2px dotted rgba(0, 0, 0, 0.4);
 		padding: var(--spacer-2) 0;
@@ -51,5 +51,9 @@
 		&:focus {
 			background-color: #373fd6;
 		}
+	}
+
+	@media (min-width: 50rem) {
+		max-height: 35rem;
 	}
 }
