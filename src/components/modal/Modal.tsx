@@ -11,7 +11,7 @@ interface ModalProps {
 }
 
 export const Modal = ({ closeCart }: ModalProps) => {
-	const [view, setView] = useState('table')
+	const [view, setView] = useState('column')
 	const [isError, setIsError] = useState(false)
 	const [isOptionsOpen, setIsOptionsOpen] = useState(false)
 	const { temporary } = useContext(CartContext)
