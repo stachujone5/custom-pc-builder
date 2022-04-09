@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/custom-pc-builder/static/css/main.a8e0cb99.css",
+    "main.css": "/custom-pc-builder/static/css/main.d5cdf208.css",
     "main.js": "/custom-pc-builder/static/js/main.60a1e550.js",
     "static/media/hero.png": "/custom-pc-builder/static/media/hero.64972d76f0bb365e14d5.png",
     "index.html": "/custom-pc-builder/index.html",
-    "main.a8e0cb99.css.map": "/custom-pc-builder/static/css/main.a8e0cb99.css.map",
+    "main.d5cdf208.css.map": "/custom-pc-builder/static/css/main.d5cdf208.css.map",
     "main.60a1e550.js.map": "/custom-pc-builder/static/js/main.60a1e550.js.map"
   },
   "entrypoints": [
-    "static/css/main.a8e0cb99.css",
+    "static/css/main.d5cdf208.css",
     "static/js/main.60a1e550.js"
   ]
 }
