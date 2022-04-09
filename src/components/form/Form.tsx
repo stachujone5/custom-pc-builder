@@ -12,7 +12,11 @@ interface ErrorInterface {
 	price: boolean
 }
 
-export const Form = () => {
+interface FormProps {
+	handleModal: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export const Form = ({ handleModal }: FormProps) => {
 	const gearRef = useRef<HTMLInputElement>(null)
 	const modelRef = useRef<HTMLInputElement>(null)
 	const priceRef = useRef<HTMLInputElement>(null)
@@ -70,7 +74,14 @@ export const Form = () => {
 			<Controls id='gear' label='Rodzaj sprzętu' type='text' inputRef={gearRef} error={errors?.gear} />
 			<Controls id='model' label='Model' type='text' inputRef={modelRef} error={errors?.model} />
 			<Controls id='price' label='Cena' type='number' inputRef={priceRef} min={0} error={errors?.price} />
-			<Controls id='category' label='Kategoria' element='select' selectRef={categoryRef} options={categories} />
+			<Controls
+				id='category'
+				label='Kategoria'
+				element='select'
+				selectRef={categoryRef}
+				options={categories}
+				onClick={handleModal}
+			/>
 			<button type='submit' className={classes.btn}>
 				Dodaj
 			</button>

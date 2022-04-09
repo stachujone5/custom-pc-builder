@@ -1,7 +1,8 @@
 .controls {
-	margin: var(--spacer-3) 0;
+	position: relative;
 	display: flex;
 	flex-direction: column;
+	margin: var(--spacer-3) 0;
 
 	.input {
 		border-radius: 0.5rem;
@@ -16,5 +17,19 @@
 
 	.error {
 		border: 2px solid rgb(189, 19, 19);
+	}
+
+	.btn {
+		position: absolute;
+		right: -1.3em;
+		top: 45%;
+		font-size: var(--fz-3);
+		transition: color 0.3s;
+		outline: none;
+
+		&:hover,
+		&:focus {
+			color: rgb(245, 225, 225);
+		}
 	}
 }

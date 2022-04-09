@@ -1,8 +1,8 @@
 import { useContext } from 'react'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { CartContext } from '../../contexts/CartContext'
-import classes from './Cart.module.scss'
 
+import classes from './Cart.module.scss'
 interface CartProps {
 	openCart: () => void
 }

@@ -17,7 +17,6 @@ interface SorterProps {
 }
 
 export const Sorter = ({ className, value, setValue }: SorterProps) => {
-	console.log('render')
 	const { cart, setTemporary, temporary } = useContext(CartContext)
 	let newCart: CartItemInterface[]
 
