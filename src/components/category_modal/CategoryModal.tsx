@@ -19,10 +19,13 @@ export const CategoryModal = ({ onClick }: CategoryModalProps) => {
 	}, [categories])
 
 	const handleAdd = () => {
+		const addedCategory = { text: newCategory, value: uuidv4() }
 		if (newCategory) {
 			setCategories(prevCategories => {
-				return [...prevCategories, { text: newCategory, value: uuidv4() }]
+				return [...prevCategories, addedCategory]
 			})
+			const newArray = [...JSON.parse(localStorage.getItem('categories')!), addedCategory]
+			localStorage.setItem('categories', JSON.stringify(newArray))
 			inputRef.current!.value = ''
 			setNewCategory('')
 			onClick()
