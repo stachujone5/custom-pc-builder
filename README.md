@@ -1,11 +1,8 @@
-# App to search for NBA players build in react
+# App to build and track price of your new PC
 
-A simple project made to play with an API that I found online and to track your favourite NBA players :D
-App was also build to practice typescript and react router.
+Project with advanced cart filtering and sorting, you can also add your own categories. There are both table and column view. There is an option to edit and delete items.
 
-Api used in this project: [balldontlie.io](https://www.balldontlie.io/)
-
-## [Live demo](http://stachujone5.github.io/nba-player-searcher)
+## [Live demo](http://stachujone5.github.io/custom-pc-builder)
 
 ### `npm install`
 
