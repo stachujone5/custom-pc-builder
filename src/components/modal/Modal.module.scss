@@ -16,7 +16,8 @@
 		padding: var(--spacer-5) var(--spacer-4);
 		width: calc(min(var(--max-width), 95vw));
 		border-radius: var(--br);
-		overflow-x: auto;
+		overflow: auto;
+		max-height: 100vh;
 
 		.error {
 			margin-top: var(--spacer-5);
@@ -56,7 +57,7 @@
 	@media (min-width: 60rem) {
 		.modal {
 			font-size: 1rem;
-			padding: var(--spacer-7);
+			padding: var(--spacer-5) var(--spacer-7);
 		}
 	}
 }

@@ -2,6 +2,9 @@
 	border-top: var(--spacer-4) solid transparent;
 	text-align: left;
 	width: 100%;
+	overflow: auto;
+	max-height: 35rem;
+	display: inline-block;
 
 	.column {
 		border-right: var(--spacer-3) solid transparent;
